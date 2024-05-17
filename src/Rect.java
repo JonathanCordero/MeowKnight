@@ -8,19 +8,35 @@ public class Rect {
 	int w;
 	int h;
 	
-	int old_x;
-	int old_y;
+	double vx = 0;
+	double vy = 0;
+	
+	double ay = G;
+	
+	static double G = .6;
+	static double F = 0;
 	
 	boolean held = false;
 	
+	public void physicsOff() {
+		vx = 0;
+		vy = 0;
+		
+		ay = 0;
+	}
+	
 	public Rect(int x, int y, int w, int h) {
+		
 		this.x = x;
 		this.y = y;
 		this.w = w;
 		this.h = h;
 		
-		old_x = x;
-		old_y = y;
+	}
+	
+	public void setVelocity(double vx, double vy) {
+		this.vx = vx;
+		this.vy = vy;
 	}
 	
 	public void grabbed() {
@@ -35,24 +51,32 @@ public class Rect {
 		g.drawRect(x, y, w, h);
 	}
 	
-	public void moveLT(int dx) {
-		 old_x = x;
-		 x -= dx;
-	}
-	public void moveRT(int dx) {
-		old_x = x;
-		x += dx;
+	public void goLT(int vx) {
+		 this.vx = -vx;
 	}
 	
-	public void moveUP(int dy) {
-		old_y = y;
-		y -= dy;
+	public void goRT(int vx) {
+		this.vx = +vx;
 	}
 	
-	public void moveDN(int dy) {
-		old_y = y;
-		y += dy;
+	public void goUP(int vy) {
+		this.vy = -vy;
 	}
+	
+	public void goDN(int vy) {
+		this.vy = +vy;
+	}
+	
+	public void move() {
+		x += vx;
+		y += vy + G/2;
+		
+		vy += G;
+	}
+	
+	/*public void jump(int h) {
+		vy = -h;
+	}*/
 	
 	public void moveBy(int dx, int dy) {
 		
@@ -75,29 +99,36 @@ public class Rect {
 	
 	public void pushOutof(Rect r) {
 		 if (cameFromAbove(r)) pushBackAbove(r);
-		 
 		 if (cameFromBelow(r)) pushBackBelow(r);
-		 
 		 if (cameFromleft(r))  pushbackLeft(r);
-		 
 		 if (cameFromRight(r)) pushbackRight(r);
 		
+		vx *= F; //ice physics.
+		if (Math.abs(vx) <=1) vx = 0;    //A clamp.
+	}
+	
+	public void Bounce(Rect r) {
+		if (cameFromAbove(r) || cameFromBelow(r)) vy = -vy;
+		if (cameFromleft(r)  || cameFromRight(r)) vx = -vx;
+		
+		vx *= F; //ice physics modifier.
+		if (Math.abs(vx) <=1) vx = 0;    //A clamp.
 	}
 	
 	public boolean cameFromleft(Rect r) {
-		return old_x + w < r.x;
+		return x - vx + w < r.x;
 	}
 	
 	public boolean cameFromRight(Rect r) {
-		return r.x +r.w < old_x;
+		return r.x +r.w < x - vx;
 	}
 	
 	public boolean cameFromAbove(Rect r) {
-		return old_y +h < r.y;
+		return y - vy + h < r.y;
 	}
 	
 	public boolean cameFromBelow(Rect r) {
-		return r.y + r.h < old_y;
+		return r.y + r.h < y - vy;
 	}
 	
 	public void pushbackLeft(Rect r) {
@@ -110,10 +141,12 @@ public class Rect {
 	
 	public void pushBackAbove(Rect r) {
 		y = r.y - h - 1;
+		
+		vy = 0;
 	}
 	
 	public void pushBackBelow(Rect r) {
-		y = r.y +h +1;
+		y = r.y + h +1;
 	}
 	
 	public boolean isLeftOf(Rect r)
@@ -134,16 +167,23 @@ public class Rect {
 	}
 	
 	public void chase(Rect r, int dx) {
-		if (isLeftOf(r)) moveRT(dx);
-		if (isRightOf(r)) moveLT(dx);
-		if (isAbove(r)) moveDN(dx);
-		if (isBelow(r)) moveUP(dx);
+		if (isLeftOf(r)) goRT(dx);
+		if (isRightOf(r)) goLT(dx);
+		if (isAbove(r)) goDN(dx);
+		if (isBelow(r)) goUP(dx);
+		
+		move();
+		
 		}
+	
 	public void evade(Rect r, int dx) {
-		if (isLeftOf(r)) moveLT(dx);
-		if (isRightOf(r)) moveRT(dx);
-		if (isAbove(r)) moveUP(dx);
-		if (isBelow(r)) moveDN(dx);
+		if (isLeftOf(r)) goLT(dx);
+		if (isRightOf(r)) goRT(dx);
+		if (isAbove(r)) goUP(dx);
+		if (isBelow(r)) goDN(dx);
+		
+		move();
+		
 	}
 	
 	public boolean contains (int mx, int my) {
@@ -152,6 +192,7 @@ public class Rect {
 				(my >= y) &&
 				(my <= y+h);
 	}
+	
 	public String toString() {
 		return "" + x + "," + y + "," + w + "," + h;
 	}
