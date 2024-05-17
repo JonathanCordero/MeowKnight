@@ -26,25 +26,22 @@ public class Sprite extends Rect{
 		
 	}
 	
-	public void moveLT(int dx) {
-		 old_x = x;
+	public void goLT(int dx) {
+		 super.goLT(dx);
 		 action = 9;
-		 x -= dx;
 		 facingleft = true;
 		 moving = true;
 	}
-	public void moveRT(int dx) {
-		old_x = x;
+	public void goRT(int dx) {
+		super.goRT(dx);
 		action = 8;
-		x += dx;
 		facingleft = false;
 		moving = true;
 	}
 	
-	public void moveUP(int dy) {
-		old_y = y;
+	public void goUP(int dy) {
+		super.goUP(dy);
 		action = 6;
-		y -= dy;
 		moving = true;
 	}
 	
@@ -66,6 +63,8 @@ public class Sprite extends Rect{
 	public void draw(Graphics g) {
 		if(!moving && action != 4 && action !=5) g.drawImage(animation[action].stillImage(), x, y, w, h, null);
 		else g.drawImage(animation[action].nextImage(), x, y, w, h, null);
+		
+		g.drawRect(x,y,w,h);
 	}
 	
 }
