@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 
 public class Area1 extends Area {
 	
+	
 	Rect2 floor = new Rect2(363,919,1075,37);
 	
 	Rect2[] platform = {
@@ -27,6 +28,8 @@ public class Area1 extends Area {
 
 	public Area1( boolean[] pressed) {
 		super(pressed, "oak_woods_Area1.png");
+		
+		
 	}
 	
 	public void inGameLoop() {

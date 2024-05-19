@@ -1,7 +1,22 @@
 import java.awt.*;
 import java.awt.event.*;
 
-public abstract class Area {
+public abstract class Area  {
+	
+	/*
+	 * private static final int ORIGINAL_SCREEN_WIDTH = 1920; private static final
+	 * int ORIGINAL_SCREEN_HEIGHT = 1000;
+	 * 
+	 * static int screenWidth; static int screenHeight;
+	 * 
+	 * static { Toolkit toolkit = Toolkit.getDefaultToolkit(); Dimension screenSize
+	 * = toolkit.getScreenSize(); screenWidth = screenSize.width; screenHeight =
+	 * screenSize.height-75; }
+	 * 
+	 * 
+	 * double scaleX = (double) screenWidth / ORIGINAL_SCREEN_WIDTH; double scaleY =
+	 * (double) screenHeight / ORIGINAL_SCREEN_HEIGHT;
+	 */
 	
 	static Area[] area = new Area[3];
 	static int count = 0;
@@ -23,7 +38,8 @@ public abstract class Area {
 		count++;
 		area[count] = this;
 		
-		background = new ImageLayer(filename, 0, 0, 0);
+		// add 1 to z DO NOT PUT 0
+		background = new ImageLayer(filename, 0, 0, 1);
 	}
 	
 	public static void setCurrentAreaTo(int n) {

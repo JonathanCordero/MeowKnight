@@ -17,12 +17,25 @@ public abstract class GameBase extends Applet implements Runnable, KeyListener, 
 	
 	Image offScreenImg;
 	Graphics offScreenG;
-			
+	
+	
+	static int screenWidth;
+	static int screenHeight; 
+	
+	
+	static {
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Dimension screenSize = toolkit.getScreenSize();
+        screenWidth = screenSize.width;
+        screenHeight = screenSize.height-75;
+    }
+	
 	public void init() {
 		
 		initialize();
 		
-		offScreenImg= this.createImage(1920, 1200);
+		//(1920, 1200)
+		offScreenImg= this.createImage(screenWidth, screenHeight);
 		offScreenG = offScreenImg.getGraphics();
 			
 		addKeyListener(this);
@@ -55,7 +68,8 @@ public abstract class GameBase extends Applet implements Runnable, KeyListener, 
 	public abstract void inGameLoop();
 		
 		public void update (Graphics g) {
-			offScreenG.clearRect(0, 0, 2560, 1600);
+			//(0, 0, 2560, 1600)
+			offScreenG.clearRect(0, 0, screenWidth, screenHeight );
 			paint(offScreenG);
 			g.drawImage(offScreenImg,0, 0, null);
 		}
@@ -74,27 +88,27 @@ public abstract class GameBase extends Applet implements Runnable, KeyListener, 
 
 	public void keyTyped(KeyEvent e) {}
 
-		@Override
+		//@Override
 	public void mouseClicked(MouseEvent e) {
 		}
 
-		@Override
+		//@Override
 	public void mousePressed(MouseEvent e) {
 			// TODO Auto-generated method stub
 			mx = e.getX();
 			my= e.getY();
 		}
 
-		@Override
+		//Override
 	public void mouseReleased(MouseEvent e) {}
 
-		@Override
+		//@Override
 	public void mouseEntered(MouseEvent e) {}
 
-		@Override
+		//@Override
 	public void mouseExited(MouseEvent e) {}
 
-		@Override
+		//@Override
 	public void mouseDragged(MouseEvent e) {
 		/*int nx = e.getX();
 		int ny = e.getY();
@@ -103,7 +117,8 @@ public abstract class GameBase extends Applet implements Runnable, KeyListener, 
 		int dy = ny-my;*/
 	}
 		
-	@Override
+	//@Override
 	public void mouseMoved(MouseEvent e) {}
 		
+	
 }
