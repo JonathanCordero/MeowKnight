@@ -13,18 +13,15 @@ public abstract class GameBase extends Applet implements Runnable, KeyListener, 
 	final int DN = KeyEvent.VK_DOWN; 
 	final int LT = KeyEvent.VK_LEFT; 
 	final int RT = KeyEvent.VK_RIGHT; 
+	final int P = KeyEvent.VK_P;
 	
-		
-	boolean UP_Pressed = false;
-	boolean DN_Pressed = false;
-	boolean LT_Pressed = false;
-	boolean RT_Pressed = false;
-		
 	Image offScreenImg;
 	Graphics offScreenG;
 			
 	public void init() {
-			
+		
+		initialize();
+		
 		offScreenImg= this.createImage(1920, 1200);
 		offScreenG = offScreenImg.getGraphics();
 			
@@ -38,11 +35,12 @@ public abstract class GameBase extends Applet implements Runnable, KeyListener, 
 		Thread t = new Thread(this);
 		t.start();
 	}
+	
+	public abstract void initialize();
 		
 	public void run() {
 		//game Loop
 		while(true) {
-				
 			inGameLoop();
 			
 			repaint();
@@ -57,7 +55,6 @@ public abstract class GameBase extends Applet implements Runnable, KeyListener, 
 	public abstract void inGameLoop();
 		
 		public void update (Graphics g) {
-			
 			offScreenG.clearRect(0, 0, 2560, 1600);
 			paint(offScreenG);
 			g.drawImage(offScreenImg,0, 0, null);
@@ -65,42 +62,20 @@ public abstract class GameBase extends Applet implements Runnable, KeyListener, 
 
 		
 		public void keyPressed(KeyEvent e) {
-			
-			//pressed[e.getKeyCode()] = true;
-			
-			int code = e.getKeyCode();
-			if (code == e.VK_UP) UP_Pressed = true;
-			if (code == e.VK_DOWN) DN_Pressed = true;
-			if (code == e.VK_LEFT) LT_Pressed = true;
-			if (code == e.VK_RIGHT) RT_Pressed =  true;
-	
+			pressed[e.getKeyCode()] = true;
 		}
 		
 		public void keyReleased( KeyEvent e){
-			
-			//pressed[e.getKeyCode()] = false;
-			
-			int code = e.getKeyCode();
-			if (code == e.VK_UP) UP_Pressed = false;
-			if (code == e.VK_DOWN) DN_Pressed = false;
-			if (code == e.VK_LEFT) LT_Pressed = false;
-			if (code == e.VK_RIGHT) RT_Pressed =  false;
-			//MeowKnight.still();
+			pressed[e.getKeyCode()] = false;
 		}
 		
-		public void paint(Graphics g) {
-			
-		}
+		public void paint(Graphics g) {}
 		
 
-	public void keyTyped(KeyEvent e) {
-			
-		}
+	public void keyTyped(KeyEvent e) {}
 
 		@Override
 	public void mouseClicked(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
 		}
 
 		@Override
@@ -111,36 +86,24 @@ public abstract class GameBase extends Applet implements Runnable, KeyListener, 
 		}
 
 		@Override
-	public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-		}
+	public void mouseReleased(MouseEvent e) {}
 
 		@Override
-	public void mouseEntered(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
+	public void mouseEntered(MouseEvent e) {}
 
 		@Override
-	public void mouseExited(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
+	public void mouseExited(MouseEvent e) {}
 
 		@Override
 	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
-		int nx = e.getX();
+		/*int nx = e.getX();
 		int ny = e.getY();
 		
 		int dx = nx-mx;
-		int dy = ny-my;
+		int dy = ny-my;*/
 	}
 		
 	@Override
-	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
-			
-	}
+	public void mouseMoved(MouseEvent e) {}
 		
 }
