@@ -166,26 +166,6 @@ public class Rect {
 		return r.y +r.h <y;
 	}
 	
-	public void chase(Rect r, int dx) {
-		if (isLeftOf(r)) goRT(dx);
-		if (isRightOf(r)) goLT(dx);
-		if (isAbove(r)) goDN(dx);
-		if (isBelow(r)) goUP(dx);
-		
-		move();
-		
-		}
-	
-	public void evade(Rect r, int dx) {
-		if (isLeftOf(r)) goLT(dx);
-		if (isRightOf(r)) goRT(dx);
-		if (isAbove(r)) goUP(dx);
-		if (isBelow(r)) goDN(dx);
-		
-		move();
-		
-	}
-	
 	public boolean contains (int mx, int my) {
 		return (mx>= x) &&
 				(mx <= x+w) &&
