@@ -6,7 +6,7 @@ public class Sprite extends Rect{
 	boolean facingleft = false;
 	boolean moving = false;
 	
-	int action =0;
+	int action = 0;
 	
 	public Sprite(String name, String [] pose, int x, int y, int count, int duration) {
 		
@@ -28,30 +28,46 @@ public class Sprite extends Rect{
 	
 	public void goLT(int dx) {
 		 super.goLT(dx);
-		 action = 9;
+		 action = 2;
 		 facingleft = true;
 		 moving = true;
 	}
 	public void goRT(int dx) {
 		super.goRT(dx);
-		action = 8;
+		action = 3;
 		facingleft = false;
 		moving = true;
 	}
 	
 	public void goUP(int dy) {
 		super.goUP(dy);
-		action = 6;
+		action = 15;
 		moving = true;
+	}
+	
+	public void chase(Rect r, int dx) {
+		if (isLeftOf(r)) goRT(dx);
+		if (isRightOf(r)) goLT(dx);
+		
+		move();
+		
+		}
+	
+	public void evade(Rect r, int dx) {
+		if (isLeftOf(r)) goLT(dx);
+		if (isRightOf(r)) goRT(dx);
+		
+		move();
+		
 	}
 	
 	public void still() {
 		
 		if(facingleft) {
-			action = 5;
+			action = 0;
 		}
 		else {
-			action = 4;
+			action = 1;
 		}
 	}
 	
@@ -61,8 +77,7 @@ public class Sprite extends Rect{
 	}*/
 	
 	public void draw(Graphics g) {
-		
-		if(!moving && action != 4 && action !=5) g.drawImage(animation[action].stillImage(), x, y, w, h, null);
+		if(!moving && action != 0 && action !=1) g.drawImage(animation[action].stillImage(), x, y, w, h, null);
 		else g.drawImage(animation[action].nextImage(), x, y, w, h, null);
 		
 		g.drawRect(x,y,w,h);
