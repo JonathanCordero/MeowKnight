@@ -1,10 +1,6 @@
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
+import java.awt.*;
 
 public class Area1 extends Area {
-	
 	
 	Rect2 floor = new Rect2(363,919,1075,37);
 	
@@ -30,8 +26,6 @@ public class Area1 extends Area {
 
 	public Area1( boolean[] pressed) {
 		super(pressed, "oak_woods_Area1.png");
-		
-		
 	}
 	
 	public void inGameLoop() {
@@ -40,6 +34,7 @@ public class Area1 extends Area {
 		if (pressed[DN]) MeowKnight.goDN(10);
 		if (pressed[LT]) MeowKnight.goLT(10);
 		if (pressed[RT]) MeowKnight.goRT(10);
+		if (pressed[A]) MeowKnight.attack();
 				
 		MeowKnight.move();
 		
