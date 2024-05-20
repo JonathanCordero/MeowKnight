@@ -27,6 +27,7 @@ public class Area1 extends Area {
 	};
 	
 	Rect bad = new Rect (1000, 700, 30, 30);
+	Foe zombieBad = new Foe(200, 700);
 
 	public Area1( boolean[] pressed) {
 		super(pressed, "oak_woods_Area1.png");
@@ -44,13 +45,17 @@ public class Area1 extends Area {
 		MeowKnight.move();
 		
 		bad.evade(MeowKnight, 5);
+		zombieBad.evade(MeowKnight,4);
 		for (int i= 0; i<land.length; i++) {
 				
 			if (MeowKnight.overlaps(land[i])) {
 				MeowKnight.pushOutof(land[i]);
 			}
-			if (bad.overlaps(land[i])) {
-				bad.pushOutof(land[i]);
+			if (zombieBad.overlaps(land[i])) {
+				zombieBad.pushOutof(land[i]);
+			}
+			if (zombieBad.overlaps(land[i])) {
+				zombieBad.pushOutof(land[i]);
 			}
 				
 		}
