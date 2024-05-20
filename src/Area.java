@@ -28,10 +28,10 @@ public abstract class Area  {
 	final int LT = KeyEvent.VK_LEFT; 
 	final int RT = KeyEvent.VK_RIGHT; 
 	final int P = KeyEvent.VK_P;
+	final int A = KeyEvent.VK_A; 
 	
 	static Sprite MeowKnight = new MeowKnight(200, 200);
 	static boolean[]pressed; 
-	//static sprite foe;
 	
 	public Area(boolean[] pressed, String filename) {
 		this.pressed = pressed;
