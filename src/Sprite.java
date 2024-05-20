@@ -1,6 +1,6 @@
 import java.awt.Graphics;
 
-public class Sprite extends Rect{
+public abstract class Sprite extends Rect{
 
 	Animation[] animation;
 	boolean facingleft = false;
@@ -70,6 +70,8 @@ public class Sprite extends Rect{
 			action = 1;
 		}
 	}
+
+	public abstract void attack();
 	
 	/*public void moveDN(int dy) {
 		old_y = y;
