@@ -77,8 +77,15 @@ public class Sprite extends Rect{
 	}*/
 	
 	public void draw(Graphics g) {
-		if(!moving && action != 0 && action !=1) g.drawImage(animation[action].stillImage(), x, y, w, h, null);
-		else g.drawImage(animation[action].nextImage(), x, y, w, h, null);
+		if(!moving ) {
+			still();
+			g.drawImage(animation[action].stillImage(), x, y, w, h, null);
+		}
+		
+		else {
+			g.drawImage(animation[action].nextImage(), x, y, w, h, null);
+			moving = false;
+		
 		
 		g.drawRect(x,y,w,h);
 	}
