@@ -1,29 +1,55 @@
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.Toolkit;
+import java.awt.*;
 
 public class Area2 extends Area {
 	
-	/* New Image here.*/Image Grassbox = Toolkit.getDefaultToolkit().getImage("Grassbox.png");
+	Rect2 floor = new Rect2(-15,745,1975,34);
+	
+	Rect bad = new Rect (1000, 700, 30, 30);
+	
+	
 
-	public Area2(boolean[] pressed) {
-		super(pressed,  "oak_woods_Area2.png");
+	public Area2( boolean[] pressed) {
+		super(pressed, "oak_woods_Area2.png");
 	}
 	
 	public void inGameLoop() {
 		
-		if (pressed[UP]) MeowKnight.goUP(5);
+		if (pressed[UP]) MeowKnight.goUP(10);
 		if (pressed[DN]) MeowKnight.goDN(10);
 		if (pressed[LT]) MeowKnight.goLT(10);
 		if (pressed[RT]) MeowKnight.goRT(10);
 				
 		MeowKnight.move();
 		
+		
+		bad.evade(MeowKnight, 10);
+				
+		if (MeowKnight.overlaps(floor))	{
+			//MeowKnight.x = 1800-30; teleport across screen. or shouldnt have put this on the floor.
+			//if (MeowKnight.x 1950) MeowKnight.x = -50 and so on.
+			MeowKnight.pushOutof(floor);
+		}
+		if (bad.overlaps(floor)) {
+			bad.pushOutof(floor);
+		}
+		
+		if (MeowKnight.x < -50) {
+			MeowKnight.x = 1900;
+			MeowKnight.y = 725;
+			Area.setCurrentAreaTo(1);
+		}
+				
+		//bad.chase(MeowKnight, 7);
 	}
 
 	public void paint(Graphics g) {
-		g.drawImage(Grassbox, 0, 0, 1500, 900, null);
+		g.setColor(Color.black);
+		background.draw(g);
+		
 		MeowKnight.draw(g);
+		bad.draw(g);
+		
+		floor.draw(g);
 	}
 
 }
