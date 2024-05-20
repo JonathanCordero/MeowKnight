@@ -30,7 +30,6 @@ public abstract class Area  {
 	final int P = KeyEvent.VK_P;
 	
 	static Sprite MeowKnight = new MeowKnight(200, 200);
-	static Foe Zombie = new Foe(200,200);
 	static boolean[]pressed; 
 	//static sprite foe;
 	
