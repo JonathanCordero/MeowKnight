@@ -39,7 +39,7 @@ public class Area1 extends Area {
 		MeowKnight.move();
 		
 //		bad.evade(MeowKnight, 5);
-		zombieBad.evade(MeowKnight,4);
+		zombieBad.chase(MeowKnight,4);
 		for (int i= 0; i<land.length; i++) {
 				
 			if (MeowKnight.overlaps(land[i])) {

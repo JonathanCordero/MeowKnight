@@ -78,6 +78,12 @@ public class Rect {
 		vy = -h;
 	}*/
 	
+	public void jump() {
+        if (vy == 0) { 
+            vy = -20; 
+        }
+    }
+	
 	public void moveBy(int dx, int dy) {
 		
 		x += dx;

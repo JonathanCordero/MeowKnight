@@ -48,7 +48,9 @@ public abstract class Sprite extends Rect{
 	public void chase(Rect r, int dx) {
 		if (isLeftOf(r)) goRT(dx);
 		if (isRightOf(r)) goLT(dx);
-		
+	    if (r.y < this.y - this.h && Math.abs(r.x - this.x) < this.w) {
+	        jump();
+	    }
 		move();
 		
 		}
