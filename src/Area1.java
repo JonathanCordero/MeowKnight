@@ -38,7 +38,7 @@ public class Area1 extends Area {
 				
 		MeowKnight.move();
 		
-		bad.evade(MeowKnight, 5);
+//		bad.evade(MeowKnight, 5);
 		zombieBad.evade(MeowKnight,4);
 		for (int i= 0; i<land.length; i++) {
 				
@@ -57,9 +57,9 @@ public class Area1 extends Area {
 					MeowKnight.pushBackAbove(platform[i]);
 					MeowKnight.vx *= MeowKnight.F;
 				}
-				if (ZombieBad.cameFromAbove(platform[i])) {
-					ZombieBad.pushBackAbove(platform[i]);
-					ZombieBad.vx *= MeowKnight.F;
+				if (zombieBad.cameFromAbove(platform[i])) {
+					zombieBad.pushBackAbove(platform[i]);
+					zombieBad.vx *= MeowKnight.F;
 				}
 			}
 		}
@@ -71,10 +71,10 @@ public class Area1 extends Area {
 					MeowKnight.vx *= MeowKnight.F;
 				}
 			}
-			if (ZombieBad.overlaps(hill[i])) {
-				if(ZombieBad.cameFromAbove(hill[i]) || ZombieBad.cameFromleft(hill[i])) {
-					ZombieBad.pushBackAbove(hill[i]);
-					ZombieBad.vx *= MeowKnight.F;
+			if (zombieBad.overlaps(hill[i])) {
+				if(zombieBad.cameFromAbove(hill[i]) || zombieBad.cameFromleft(hill[i])) {
+					zombieBad.pushBackAbove(hill[i]);
+					zombieBad.vx *= MeowKnight.F;
 				}
 			}
 		}
@@ -84,8 +84,8 @@ public class Area1 extends Area {
 			//if (MeowKnight.x 1950) MeowKnight.x = -50 and so on.
 			MeowKnight.pushOutof(floor);
 		}
-		if (Zombie.overlaps(floor)) {
-			Zombie.pushOutof(floor);
+		if (zombieBad.overlaps(floor)) {
+			zombieBad.pushOutof(floor);
 		}
 		
 		if (MeowKnight.x > 1920) {
@@ -103,7 +103,7 @@ public class Area1 extends Area {
 		background.draw(g);
 		
 		MeowKnight.draw(g);
-		Zombie.draw(g);
+		zombieBad.draw(g);
 		
 		floor.draw(g);
 		

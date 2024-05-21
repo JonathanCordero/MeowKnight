@@ -88,8 +88,8 @@ public abstract class Sprite extends Rect{
 			g.drawImage(animation[action].nextImage(), x, y, w, h, null);
 			moving = false;
 		
-		
-		g.drawRect(x,y,w,h);
+				g.drawRect(x,y,w,h);
 	}
 	
+}
 }

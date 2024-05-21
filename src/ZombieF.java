@@ -1,8 +1,8 @@
 
 public class ZombieF extends Sprite {
 
-	public static String[] pose = {"Idleleft", "Idle", "WalkLeft", "Walk",
-									"AttackLeft", "Attack", "DeadLeft", "Dead"};
+	public static String[] pose = {"IdleLeft", "Idle", "WalkLeft", "Walk",
+									"AttackLeft", "Attack", "DeathLeft", "Death"};
 	
 	public ZombieF(int x, int y) {
 		super("Zombie-fm", pose, x, y, 5, 15);
