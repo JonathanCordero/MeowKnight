@@ -69,6 +69,10 @@ public class MeowKnight extends Sprite {
 	        }
 	    }
 	    
+	    public int getHealth() {
+	        return this.health;
+	    }
+	    
 	    @Override
 	    public void goLT(int dx) {
 	        super.goLT(dx);
@@ -91,6 +95,7 @@ public class MeowKnight extends Sprite {
 	        return hasStartedMoving;
 	    }
 	
+	    
 	    public void draw(Graphics g) {
 	        super.draw(g);
 	        drawHealthBar(g);

@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.Random;
 
 public class Area1 extends Area {
 	
@@ -23,10 +24,23 @@ public class Area1 extends Area {
 	};
 	
 	Foe zombieBad = new Foe(700, 850);
-
+	Heart[] hearts;
 	public Area1( boolean[] pressed) {
 		super(pressed, "oak_woods_Area1.png");
+		hearts = new Heart[platform.length];
 	}
+	
+	 private void placeHeartIfNeeded() {
+	        if (MeowKnight.getHealth() < 50) {
+	            for (int i = 0; i < hearts.length; i++) {
+	                if (hearts[i] == null || hearts[i].isCollected()) {
+	                    int randPlatformIndex = new Random().nextInt(platform.length);
+	                    hearts[i] = new Heart(platform[randPlatformIndex].x, platform[randPlatformIndex].y, platform[randPlatformIndex].w);
+	                    break;
+	                }
+	            }
+	        }
+	    }
 	
 	public void inGameLoop() {
 		
@@ -84,6 +98,20 @@ public class Area1 extends Area {
 				}
 			}
 		}
+		
+		placeHeartIfNeeded();
+		for (int i=0; i < hearts.length;i++) {
+			if (hearts[i] != null && !hearts[i].isCollected() && MeowKnight.overlaps(hearts[i])) {
+                hearts[i].collect();
+                MeowKnight.heal(10); // Heal MeowKnight by 20
+            }
+		}
+//        for (Heart heart : hearts) {
+//            if (heart != null && !heart.isCollected() && MeowKnight.overlaps(heart)) {
+//                heart.collect();
+//                MeowKnight.heal(20); // Heal MeowKnight by 20
+//            }
+        //}
 				
 		if (MeowKnight.overlaps(floor))	{
 			//MeowKnight.x = 1800-30; teleport across screen. or shouldnt have put this on the floor.
@@ -128,6 +156,12 @@ public class Area1 extends Area {
 		
 		for (int i=0; i<platform.length; i++) {
 			platform[i].draw(g);
+		}
+		
+		for (int i=0; i<hearts.length; i++) {
+			if (hearts[i] != null) {
+                hearts[i].draw(g);
+            }
 		}
 	}
 
