@@ -24,7 +24,7 @@ public class Area2 extends Area {
 		MeowKnight.move();
 		
 		
-		ZombieBad.evade(MeowKnight, 10);
+		ZombieBad.chase(MeowKnight, 4);
 				
 		if (MeowKnight.overlaps(floor))	{
 			//MeowKnight.x = 1800-30; teleport across screen. or shouldnt have put this on the floor.

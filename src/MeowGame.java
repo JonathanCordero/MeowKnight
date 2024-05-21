@@ -26,7 +26,7 @@ public class MeowGame extends GameBase {
 	Area2 Area2 = new Area2(pressed);
 	
 	public void initialize() {
-		
+		setSize(1400,800);
 		Area.setCurrentAreaTo(1);
 	}
 	
