@@ -22,7 +22,7 @@ public class Area1 extends Area {
 		new Rect2(1554,829,90,65),
 	};
 	
-	Foe zombieBad = new Foe(200, 700);
+	Foe zombieBad = new Foe(400, 200);
 
 	public Area1( boolean[] pressed) {
 		super(pressed, "oak_woods_Area1.png");
