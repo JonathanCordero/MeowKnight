@@ -19,7 +19,7 @@ public class ImageLayer {
         Dimension screenSize = toolkit.getScreenSize();
 
         // Set the screen width and height
-        screenWidth = screenSize.width;
+        screenWidth = screenSize.width-20;
         screenHeight = screenSize.height-75;
     }
 	

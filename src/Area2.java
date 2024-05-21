@@ -18,6 +18,8 @@ public class Area2 extends Area {
 		if (pressed[DN]) MeowKnight.goDN(10);
 		if (pressed[LT]) MeowKnight.goLT(10);
 		if (pressed[RT]) MeowKnight.goRT(10);
+		if (pressed[A]) MeowKnight.attack();
+		if (pressed[S]) MeowKnight.dodge(15);
 				
 		MeowKnight.move();
 		
@@ -34,9 +36,9 @@ public class Area2 extends Area {
 		}
 		
 		if (MeowKnight.x < -50) {
-			MeowKnight.x = 1900;
-			MeowKnight.y = 725;
 			Area.setCurrentAreaTo(1);
+			MeowKnight.x = 1900 * (int) scaleX;
+			//MeowKnight.y = 742 * (int) scaleY;
 		}
 				
 		//bad.chase(MeowKnight, 7);

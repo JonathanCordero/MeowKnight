@@ -14,4 +14,8 @@ public class ZombieF extends Sprite {
 	public void attack() {
 		
 	}
+	
+	public void dodge(int dx) {
+		
+	}
 }

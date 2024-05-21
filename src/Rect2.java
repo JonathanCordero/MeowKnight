@@ -14,7 +14,7 @@ public class Rect2 extends Rect {
 	static {
 	    Toolkit toolkit = Toolkit.getDefaultToolkit();
 	    Dimension screenSize = toolkit.getScreenSize();
-	    screenWidth = screenSize.width;
+	    screenWidth = screenSize.width-20;
 	    screenHeight = screenSize.height-75;
 	}
 	double scaleX = (double) screenWidth / ORIGINAL_SCREEN_WIDTH;

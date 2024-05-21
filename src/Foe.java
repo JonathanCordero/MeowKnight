@@ -14,4 +14,7 @@ public class Foe extends Sprite {
 		
 	}
 	
+	public void dodge(int dx) {
+	}
+	
 }

@@ -35,6 +35,8 @@ public class Area1 extends Area {
 		if (pressed[LT]) MeowKnight.goLT(10);
 		if (pressed[RT]) MeowKnight.goRT(10);
 		if (pressed[A]) MeowKnight.attack();
+		if (pressed[Z]) MeowKnight.attack2();
+		if (pressed[S]) MeowKnight.dodge(15);
 				
 		MeowKnight.move();
 		
@@ -88,10 +90,12 @@ public class Area1 extends Area {
 			zombieBad.pushOutof(floor);
 		}
 		
-		if (MeowKnight.x > 1920) {
-			MeowKnight.x = 0;
-			MeowKnight.y = 645;
+		
+		if (MeowKnight.x > 1920 *scaleX ) {
 			Area.setCurrentAreaTo(2);
+			
+			MeowKnight.x = 0 * (int) scaleX;
+			MeowKnight.y = 1000 * (int) scaleY;
 		}
 				
 		//bad.chase(MeowKnight, 7);
