@@ -5,7 +5,7 @@ import java.awt.event.*;
 //review code from professor.
 public class MeowGame extends GameBase {
 	
-	
+	private AudioPlayer bgMusic;
 	/*
 	 * Rect2 floor = new Rect2(363,919,1075,37);
 	 * 
@@ -27,6 +27,9 @@ public class MeowGame extends GameBase {
 	
 	public void initialize() {
 		setSize(1400,800);
+		  bgMusic = new AudioPlayer();
+	      bgMusic.load("bg1.wav");
+	      bgMusic.loop(); 
 		Area.setCurrentAreaTo(1);
 	}
 	
