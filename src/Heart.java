@@ -18,7 +18,6 @@ public class Heart extends Rect {
     public void draw(Graphics g) {
         if (!collected) {
         	g.drawImage(image, x, y, w, h, null);
-//            image.draw(g);
         }
     }
 

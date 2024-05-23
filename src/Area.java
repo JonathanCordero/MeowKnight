@@ -31,6 +31,7 @@ public abstract class Area {
 	final int Z = KeyEvent.VK_Z;
 
 	static MeowKnight MeowKnight = new MeowKnight(200, 200);
+	static Foe zombieBad = new Foe(700, 850);
 	static boolean[] pressed;
 
 	public Area(boolean[] pressed, String filename) {

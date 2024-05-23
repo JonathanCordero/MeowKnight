@@ -4,8 +4,9 @@ public class Area2 extends Area {
 	
 	Rect2 floor = new Rect2(-15,745,1975,34);
 	
-	Foe ZombieBad = new Foe(300,600);
+//	Foe ZombieBad = new Foe(300,600);
 	
+	ZombieF ZombieFmBad = new ZombieF(500,600);
 	
 
 	public Area2( boolean[] pressed) {
@@ -24,20 +25,26 @@ public class Area2 extends Area {
 		MeowKnight.move();
 		
 		
-		ZombieBad.chase(MeowKnight, 4);
+
+		ZombieFmBad.chase(MeowKnight, 2);
 				
 		if (MeowKnight.overlaps(floor))	{
 			//MeowKnight.x = 1800-30; teleport across screen. or shouldnt have put this on the floor.
 			//if (MeowKnight.x 1950) MeowKnight.x = -50 and so on.
 			MeowKnight.pushOutof(floor);
 		}
-		if (ZombieBad.overlaps(floor)) {
-			ZombieBad.pushOutof(floor);
+
+		
+		if (ZombieFmBad.overlaps(floor)) {
+			ZombieFmBad.pushOutof(floor);
 		}
+		
 		
 		if (MeowKnight.x < -50) {
 			Area.setCurrentAreaTo(1);
-			MeowKnight.x = 1900 * (int) scaleX;
+//			MeowKnight.x = 1900 * (int) scaleX;
+			MeowKnight.x = 1400;
+//			System.out.println((int) scaleX);
 			//MeowKnight.y = 742 * (int) scaleY;
 		}
 				
@@ -49,7 +56,8 @@ public class Area2 extends Area {
 		background.draw(g);
 		
 		MeowKnight.draw(g);
-		ZombieBad.draw(g);
+
+		ZombieFmBad.draw(g);
 		
 		floor.draw(g);
 	}

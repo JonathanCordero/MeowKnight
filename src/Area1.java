@@ -23,24 +23,32 @@ public class Area1 extends Area {
 		new Rect2(1554,829,90,65),
 	};
 	
-	Foe zombieBad = new Foe(700, 850);
+//	Foe zombieBad = new Foe(700, 850);
 	Heart[] hearts;
 	public Area1( boolean[] pressed) {
 		super(pressed, "oak_woods_Area1.png");
 		hearts = new Heart[platform.length];
 	}
 	
+	
 	 private void placeHeartIfNeeded() {
 	        if (MeowKnight.getHealth() < 50) {
 	            for (int i = 0; i < hearts.length; i++) {
 	                if (hearts[i] == null || hearts[i].isCollected()) {
-	                    int randPlatformIndex = new Random().nextInt(platform.length);
-	                    hearts[i] = new Heart(platform[randPlatformIndex].x, platform[randPlatformIndex].y, platform[randPlatformIndex].w);
+	                	int randPlatform = new Random().nextInt(platform.length);
+	                	if(i%2 ==0) {
+	                    hearts[i] = new Heart(platform[randPlatform].x, platform[randPlatform].y, platform[randPlatform].w);
 	                    break;
+	                }else {
+	                	hearts[i] = new Heart(land[randPlatform].x, land[randPlatform].y, land[randPlatform].w);
+	                	break;
+	                }
 	                }
 	            }
 	        }
 	    }
+	
+
 	
 	public void inGameLoop() {
 		
@@ -103,7 +111,7 @@ public class Area1 extends Area {
 		for (int i=0; i < hearts.length;i++) {
 			if (hearts[i] != null && !hearts[i].isCollected() && MeowKnight.overlaps(hearts[i])) {
                 hearts[i].collect();
-                MeowKnight.heal(10); // Heal MeowKnight by 20
+                MeowKnight.heal(20); // Heal MeowKnight by 20
             }
 		}
 //        for (Heart heart : hearts) {
